@@ -1,66 +1,27 @@
 // pre-bundled node modules
 const fs = require('fs');
-const url = require("url");
-const http = require('http');
 
 // 3rd-party module
-const mimeTypes = require("mime-types"); 
+const express = require('express');
 
-// alias
-let lookup = mimeTypes.lookup;
 
+const app = express();
 
 const PORT = 3000;
 const HOST = "localhost";
 
-let server = http.createServer((req, res) => 
-{
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-    let parsedURL = new URL(req.url, "http://" + HOST + ":" + PORT);
-
-    let path = parsedURL.pathname.replace(/^\/+|\/+$/g, "");
-
-
-    switch (path) {
-      case "":
-      case "":
-      case "home":
-        path = "index.html";
-        break;
-      case "about":
-        path = "index.html";
-        break;
-      case "services":
-        path = "index.html";
-        break;
-      case "contact":
-        path = "index.html";
-        break;
-      case "contact-list":
-        path = "index.html";
-        break;
-      case "projects":
-        path = "index.html";
-        break;
-      case "register":
-        path = "index.html";
-        break;
-      case "login":
-        path = "index.html";
-        break;
-      case "edit":
-        path = "index.html";
-        break;
-      default:
-          path = "404.html";
-          break;
-    }
-
-    let file = __dirname + "/" + path;
-    console.log(file);
+app.listen(PORT, () => {
+  console.log(`Server running at http://${HOST}:${PORT}/`);
+})
 
 
-    fs.readFile(file, function (err,data) 
+
+
+/* fs.readFile(file, function (err,data) 
     {
         if (err) 
         {
@@ -74,12 +35,5 @@ let server = http.createServer((req, res) =>
         res.writeHead(200, { "Content-type": mime });
         res.end(data);
   
-      });
-
-});
-
-
-server.listen(PORT);
-
-console.log(`Server running at http://${HOST}:${PORT}/`);
+      }); */
 
