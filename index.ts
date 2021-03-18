@@ -16,8 +16,15 @@ app.use(express.static(path.join(__dirname, "Client")));
 app.use(express.static(path.join(__dirname, "Views")));
 
 // Routing
+
+// default route
 app.get('/', (req, res) => 
 {
+  displaySPA(res);
+});
+
+// wild card route
+app.get('*', (req, res) =>{
   displaySPA(res);
 });
 
